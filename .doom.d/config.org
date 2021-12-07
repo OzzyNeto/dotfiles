@@ -1,0 +1,107 @@
+#+TITLE: Ozzy's Doom Emacs Config
+#+AUTHOR: Ozzy Neto
+#+STARTUP: showeverything
+
+* General Settings
+** Window Settings
+#+begin_src emacs-lisp
+(add-to-list 'default-frame-alist '(fullscreen . maximized)) ;; Start Emacs in maximized window
+#+end_src
+** Idendity
+Some functionality uses this to identify you, e.g. GPG configuration, email
+clients, file templates and snippets.
+
+#+begin_src emacs-lisp
+(setq user-full-name "Ozzy Neto"
+      user-mail-address "osn4@scarletmail.rutgers.edu")
+#+end_src
+** Theme
+There are two ways to load a theme. Both assume the theme is installed and
+available. You can either set `doom-theme' or manually load a theme with the
+`load-theme' function.
+
+#+begin_src emacs-lisp
+(setq doom-theme 'doom-wilmersdorf)
+#+end_src
+** Line Numbers
+This determines the style of line numbers in effect. If set to `nil', line
+numbers are disabled. For relative line numbers, set this to `relative'.
+
+#+begin_src emacs-lisp
+(setq display-line-numbers-type t)
+#+end_src
+
+* Fonts
+Doom exposes five (optional) variables for controlling fonts in Doom. Here
+are the three important ones:
+- `doom-font'
+- `doom-variable-pitch-font'
+- `doom-big-font' -- used for `doom-big-font-mode'; use this for presentations or streaming.
+- `font-lock-comment-face' – for comments.
+- `font-lock-keyword-face' – for keywords with special significance like ‘setq’ in elisp.
+They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
+font string. You generally only need these two:
+(setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
+       doom-variable-pitch-font (font-spec :family "sans" :size 13))
+
+#+begin_src emacs-lisp
+(setq doom-font (font-spec :family "JetBrainsMono" :size 17 :weight 'regular)
+      doom-variable-pitch-font (font-spec :family "JetBrainsMono" :size 17)
+      doom-big-font (font-spec :family "JetBrainsMono" :size 20))
+(after! doom-themes
+  (setq doom-themes-enable-bold t
+        doom-themes-enable-italic t))
+(custom-set-faces!
+  '(font-lock-comment-face :slant italic))
+#+end_src
+
+* Doom Modeline
+Add pretty (and helpful) icons to the modeline.
+
+#+begin_src emacs-lisp
+(setq doom-modeline-icon (display-graphic-p))
+(setq doom-modeline-major-mode-icon t)
+(setq doom-modeline-major-mode-color-icon t)
+(setq doom-modeline-buffer-state-icon t)
+(setq doom-modeline-buffer-modification-icon t)
+#+end_src
+
+* Org
+#+begin_src emacs-lisp
+;; Org Bullets
+(setq
+    org-superstar-headline-bullets-list '("⁖" "◉" "○" "✸" "✿")
+)
+
+;; If you use `org' and don't want your org files in the default location below,
+;; change `org-directory'. It must be set before org loads!
+(after! org
+  (setq org-directory "~/org/")
+  (setq org-hide-emphasis-markers t))
+#+end_src
+
+* Languages
+** LSP General Settings
+#+begin_src emacs-lisp
+(after! lsp-ui
+  (setq lsp-ui-doc-enable t))
+#+end_src
+
+** C/C++
+LSP support for C/C++ using clangd.
+
+#+begin_src emacs-lisp
+(setq lsp-clients-clangd-args '("-j=3"
+                                "--background-index"
+                                "--clang-tidy"
+                                "--completion-style=detailed"
+                                "--header-insertion=never"
+                                "--header-insertion-decorators=0"))
+(after! lsp-clangd (set-lsp-priority! 'clangd 2))
+#+end_src
+
+** LaTeX
+
+#+begin_src emacs-lisp
+(setq +latex-viewers '(pdf-tools)) ;; Set pdf-tools as the default pdf viewer
+#+end_src

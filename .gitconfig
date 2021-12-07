@@ -1,0 +1,9 @@
+[user]
+	email = ozzynetocodes@gmail.com
+	name = Ozzy Neto
+[core]
+	editor = nvim
+[credential]
+	username = OzzyNeto
+[init]
+	defaultBranch = master
