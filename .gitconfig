@@ -1,9 +1,12 @@
 [user]
 	email = ozzynetocodes@gmail.com
-	name = Ozzy Neto
+	name = OzzyNeto
 [core]
 	editor = nvim
 [credential]
 	username = OzzyNeto
+	helper = cache
 [init]
 	defaultBranch = master
+[url "git@github.com:"]
+	insteadOf = https://github.com/
