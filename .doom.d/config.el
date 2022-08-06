@@ -3,7 +3,7 @@
 (setq user-full-name "Ozzy Neto"
       user-mail-address "osn4@scarletmail.rutgers.edu")
 
-(setq doom-theme 'doom-wilmersdorf)
+(setq doom-theme 'doom-vibrant)
 
 (setq display-line-numbers-type t)
 

@@ -15,8 +15,8 @@
 export HISTCONTROL=ignoreboth:erasedups
 
 # Make neovim the default editor
-export EDITOR='lvim'
-export VISUAL='lvim'
+export EDITOR='nvim'
+export VISUAL='nvim'
 
 # Swap CTRL and Caps Lock
 /usr/bin/setxkbmap -option "ctrl:swapcaps"
@@ -55,6 +55,15 @@ alias updte='sudo pacman -Syyu'
 alias updqte='sudo pacman -Syyu'
 alias upqll="paru -Syu --noconfirm"
 alias upal="paru -Syu --noconfirm"
+
+# Colorize man pages
+export LESS_TERMCAP_mb=$'\E[1;31m'
+export LESS_TERMCAP_md=$'\E[1;31m'
+export LESS_TERMCAP_me=$'\E[0m'
+export LESS_TERMCAP_ue=$'\E[0m'
+export LESS_TERMCAP_so=$'\E[1;33m'
+export LESS_TERMCAP_se=$'\E[0m'
+export LESS_TERMCAP_us=$'\E[1;32m'
 
 ## Colorize the grep command output for ease of use (good for log files)##
 alias grep='grep --color=auto'
@@ -287,3 +296,7 @@ alias personal='cp -Rf /personal/* ~'
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# BEGIN_KITTY_SHELL_INTEGRATION
+if test -n "$KITTY_INSTALLATION_DIR" -a -e "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; then source "$KITTY_INSTALLATION_DIR/shell-integration/bash/kitty.bash"; fi
+# END_KITTY_SHELL_INTEGRATION

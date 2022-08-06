@@ -21,7 +21,7 @@ available. You can either set `doom-theme' or manually load a theme with the
 `load-theme' function.
 
 #+begin_src emacs-lisp
-(setq doom-theme 'doom-wilmersdorf)
+(setq doom-theme 'doom-vibrant)
 #+end_src
 ** Line Numbers
 This determines the style of line numbers in effect. If set to `nil', line

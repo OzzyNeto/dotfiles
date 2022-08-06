@@ -140,82 +140,17 @@ nnoremap <C-k> :set foldmethod=syntax<CR>
 xnoremap K :move '<-2<CR>gv-gv
 xnoremap J :move '>+1<CR>gv-gv
 
-" --------------- Status Line ---------------
-set laststatus=2
-set statusline=
-set statusline+=%{StatuslineMode()}
-set statusline+=\
-set statusline+=%{b:gitbranch}
-set statusline+=\
-set statusline+=%m
-set statusline+=\
-set statusline+=<
-set statusline+=<
-set statusline+=%f
-set statusline+=>
-set statusline+=>
-set statusline+=%=
-set statusline+=%y
-set statusline+=\
-set statusline+=%n
-set statusline+=\
-set statusline+=|
-set statusline+=\
-set statusline+=%c
-set statusline+=\
-set statusline+=%P
-
-function! StatuslineMode()
-  let l:mode=mode()
-  if l:mode==#"n"
-    return "NORMAL"
-  elseif l:mode==?"v"
-    return "VISUAL"
-  elseif l:mode==#"i"
-    return "INSERT"
-  elseif l:mode==#"R"
-    return "REPLACE"
-  elseif l:mode==?"s"
-    return "SELECT"
-  elseif l:mode==#"t"
-    return "TERMINAL"
-  elseif l:mode==#"c"
-    return "COMMAND"
-  elseif l:mode==#"!"
-    return "SHELL"
-  endif
-endfunction
-
-function! StatuslineGitBranch()
-  let b:gitbranch=""
-  if &modifiable
-    try
-      let l:dir=expand('%:p:h')
-      let l:gitrevparse = system("git -C ".l:dir." rev-parse --abbrev-ref HEAD")
-      if !v:shell_error
-        let b:gitbranch="(".substitute(l:gitrevparse, '\n', '', 'g').") "
-      endif
-    catch
-    endtry
-  endif
-endfunction
-
-augroup GetGitBranch
-  autocmd!
-  autocmd VimEnter,WinEnter,BufEnter * call StatuslineGitBranch()
-augroup END
-
 
 " ------------------ Themes -----------------
 " Nord
-colorscheme nord
+"colorscheme nord
 
 " Gruvbox
 "let g:gruvbox_contrast_dark='medium'
 "colorscheme gruvbox
 
 " Code Dark+
-"colorscheme codedark
+colorscheme codedark
 
 
 " --------------- Plugin Configurastion ---------------
